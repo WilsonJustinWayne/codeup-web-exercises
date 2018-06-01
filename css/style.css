@@ -2,7 +2,32 @@
 this file is named "site.css" and is in a directory named "css"
 */
 
+
+/*This is from the exercise for Introduction to CSS*/
+/*.fancy-header {*/
+    /*color: purple;*/
+    /*text-decoration: underline;*/
+/*}*/
+
+/*This is from the exercise for Selectors and Properties*/
+body {
+    background: pink url("../Images/Peanut-butter-jelly-time.gif") no-repeat bottom right fixed;
+    background-size: 100px;
+}
+
 .fancy-header {
-    color: purple;
+    text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: brown;
     text-decoration: underline;
+}
+
+ul {
+    list-style-type: square;
 }
