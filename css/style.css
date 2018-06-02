@@ -11,12 +11,40 @@ this file is named "site.css" and is in a directory named "css"
 
 /*This is from the exercise for Selectors and Properties*/
 body {
-    background: pink url("../Images/Peanut-butter-jelly-time.gif") no-repeat bottom right fixed;
-    background-size: 100px;
+    background: pink url("../Images/background-for-welcome.jpg") no-repeat bottom right fixed;
+    background-size: cover;
 }
 
 .fancy-header {
     text-align: center;
+}
+
+.pics {
+    padding: 1px;
+    width: 250px;
+    height: 250px;
+    transition: transform .2s;
+}
+
+.pics:hover {
+    transform: scale(1.5);
+}
+
+.mascot {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    bottom: 25px;
+    right: 2px;
+    margin: 0;
+    paddin: 0;
+    border: 0;
+    transition: 10s;
+    z-index: 1;
+}
+
+.mascot:hover {
+    transform: scale(100);
 }
 
 h1,
