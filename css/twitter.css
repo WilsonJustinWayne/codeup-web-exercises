@@ -38,6 +38,7 @@ a {
     padding: 10px;
 }
 .container {
+    padding: 2em;
     margin-top: 2em;
 }
 .img-circle {
@@ -115,6 +116,7 @@ a {
 }
 .top-nav {
     position: fixed;
+    background-color: var(--light-bg);
     width: 100%;
     z-index: 1000;
 }

@@ -1,0 +1,99 @@
+:root {
+    --marginLength: 1em;
+}
+* {
+    font-family: "Apple Symbols";
+}
+
+.alert-info a {
+    background-color: aquamarine;
+    font-size: 1.5em;
+    text-align: center;
+    border: .1em solid lightgray;
+    padding: .5em;
+}
+.alert-info a:link {
+    text-decoration: none;
+}
+h1 {
+    font-size: 3em;
+    text-align: center;
+}
+.nav-links {
+    display: block;
+    list-style-type: none;
+    padding: 0;
+
+}
+li {
+    background-color: lightgray;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 1em;
+    margin: 1em 0em;
+}
+    .header-img>img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+    }
+
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media screen and (min-width:768px) {
+    html {
+        height: 100%;
+    }
+    body {
+        float: top;
+        margin: var(--marginLength);
+        height: 100%;
+    }
+    h1 {
+        float: left;
+        margin-bottom: 0;
+    }
+    footer {
+        clear: both;
+        float: left;
+        width: 100%;
+        height: auto;
+    }
+    footer>p {
+        position: absolute;
+        bottom: 0em;
+    }
+    ul.nav-links {
+        margin: 4em;
+        margin-bottom: 0;
+    }
+    .hidden-on-desktop {
+        display: none;
+    }
+    .nav-links {
+        float: right;
+        font-size: .5em;
+    }
+    .nav-links li {
+        display: inline-block;
+        background-color: white;
+    }
+    .main {
+        float: left;
+        width: 60%;
+    }
+    .sub-section {
+        float: left;
+        width: 40%;
+    }
+    .header-img>img {
+        clear: both;
+        float: left;
+    }
+    #social-media-links {
+        float: right;
+    }
+}
