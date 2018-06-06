@@ -1,0 +1,14 @@
+body {
+    color: #00B03B;
+}
+h1 {
+    background-color: white;
+    opacity: 0.5;
+    text-align: center;
+    font-size: 5em;
+}
+.jumbotron {
+    background-image: url(../Images/pizza.png);
+    padding: 5em 0;
+    margin-top: 1.5em;
+}

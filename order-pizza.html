@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Pizza</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Your custom styles go here -->
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand text-success" href="#">Pizza World</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-success" href="#">Order Online<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-success" href="#">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline">
+                    <input class="form-control mr-sm-2 text-success" type="search" placeholder="Zip Code" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 text-success" type="submit">Search Stores Near You!</button>
+                    </form>
+                </li>
+            </ul>
+            <ul>
+                <li class="nav-item text-nowrap form-inline">
+                    <i class="fas fa-user text-success"></i>
+                    <a class="nav-link text-success" href="#">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<main class="container">
+    <div class="jumbotron d-none d-md-block">
+        <h1 class="align-middle text-dark">Welcome to Pizza World!</h1>
+    </div>
+    <div>
+        <h2 class="text-success">Build your own pizza!</h2>
+    </div>
+    <hr>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link text-success active" href="#"><span class="badge badge-pill badge-success">1</span>Size and Crust</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-success" href="#"><span class="badge badge-pill badge-success">2</span>Cheese and Sauce</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-success" href="#"><span class="badge badge-pill badge-success">3</span>Toppings</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5>Choose Size and Crust</h5>
+        </div>
+        <div class="card-body">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Hand Tossed</h5>
+                </div>
+                <div class="card-body"></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Crispy Thin</h5>
+                </div>
+                <div class="card-body"></div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-success float-right">Next Step</button>
+        </div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- Your custom JS goes here -->
+</body>
+</html>
