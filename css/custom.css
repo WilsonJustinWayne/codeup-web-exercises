@@ -1,5 +1,9 @@
+:root {
+    --green-bg: lightgreen;
+    --green-font:#00B03B;
+}
 body {
-    color: #00B03B;
+    color: var(--green-font);
 }
 h1 {
     background-color: white;
@@ -10,5 +14,11 @@ h1 {
 .jumbotron {
     background-image: url(../Images/pizza.png);
     padding: 5em 0;
-    margin-top: 1.5em;
+    margin-top: 1.25em;
+}
+.card, .card-header, .card-body, .card-footer{
+    border-color: var(--green-font);
+}
+.card-footer, li.list-group-item, .green-div {
+    background-color: var(--green-bg);
 }
