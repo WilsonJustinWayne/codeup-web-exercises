@@ -1,0 +1,82 @@
+:root {
+    --clr-grey: #E6E6E6;
+    --clr-white: #F0F0F0;
+    --clr-blue: #00ABA9;
+    --clr-green: #7CB06C;
+    --clr-orange: #EB9D3A;
+    --clr-red: #E6563B;
+}
+
+body {
+    font-family: 'Abel', sans-serif;
+    background: var(--clr-grey);
+}
+
+nav {
+    font-size: smaller;
+}
+
+.anton-text {
+    font-family: 'Anton', sans-serif;
+}
+
+.white-bar {
+    background: var(--clr-white);
+    height: 70px;
+}
+
+.spacer-row {
+    height: 30px;
+}
+
+.circle {
+    border: 5px solid var(--clr-white);
+    height: 111px;
+    width: 100%;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.circle-text {
+    font-size: 26px;
+    color: var(--clr-white);
+}
+
+.design {
+    background: var(--clr-red);
+}
+
+.develop {
+    background: var(--clr-orange);
+}
+
+.support {
+    background: var(--clr-green);
+}
+
+.host {
+    background: var(--clr-blue);
+}
+
+.img-border {
+    border: 5px solid darkgray;
+}
+
+.smaller-text {
+    font-size: 13px;
+}
+
+@media screen and (min-width: 576px) {
+    .sm-hidden {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+}
+
+@media screen and (min-width: 992px) {
+
+}
