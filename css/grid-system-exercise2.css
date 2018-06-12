@@ -29,13 +29,35 @@ nav {
     height: 30px;
 }
 
+.big-spacer-row {
+    height: 150px;
+}
+
+.spacer-row2 {
+    height: 15px;
+}
+
+.banner-image {
+    height: 95px;
+    width: 95px;
+}
+
+.banner-text {
+    font-size: 30px;
+}
+
 .circle {
     border: 5px solid var(--clr-white);
-    height: 111px;
-    width: 100%;
+    height: 105px;
+    width: 105px;
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;
+}
+
+.circle-sm {
+    height: 24px;
+    width: 24px;
 }
 
 .circle-text {
@@ -67,14 +89,46 @@ nav {
     font-size: 13px;
 }
 
+.xs-hidden {
+    display: none;
+}
+
+.logo {
+    height: 105px;
+    width: 105px;
+}
+
 @media screen and (min-width: 576px) {
+    .xs-hidden {
+        display: inline;
+    }
+
     .sm-hidden {
         display: none;
+    }
+
+    .smaller-text {
+        font-size: 12px;
+    }
+
+    .img-border {
+        height: 143px;
     }
 }
 
 @media screen and (min-width: 768px) {
 
+    .xs-hidden {
+        display: inline;
+    }
+
+    .sm-hidden {
+        display: inline;
+    }
+
+    .md-hidden {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 992px) {
