@@ -73,6 +73,10 @@ nav {
     width: 105px;
 }
 
+.side-panel-row {
+    /*height: 20%;*/
+}
+
 .smaller-text {
     font-size: 13px;
 }

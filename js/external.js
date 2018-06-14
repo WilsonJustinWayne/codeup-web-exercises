@@ -1,3 +1,5 @@
+(function() {
+
 "use strict";
 
 console.log("Hello from External JavaScript");
@@ -63,3 +65,5 @@ if (isOfferAvailable) {
     offerMessage = "The Discount is not available for you!";
 }
 alert(offerMessage);
+
+})();
