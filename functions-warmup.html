@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    (function () {
+        "use strict";
+
+        function makeUsername(firstName, age) {
+            return (firstName.length.toString()) + (firstName.charAt(0).toLowerCase()) + (age.toString());
+        }
+
+        var username = makeUsername(prompt("Please type your first name here"), prompt("Please type your age here"));
+        alert("Your Username is: " + username);
+    })();
+</script>
+</body>
+</html>
