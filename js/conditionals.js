@@ -16,33 +16,34 @@
      *
      * Can you refactor your code to use functions?
      */
+    function number() {
+        var numberConfirm = confirm("Would you like to enter a number?");
+        if (numberConfirm) {
+            var numberEntered = prompt("What number would you like to use?");
 
-    var numberConfirm = confirm("Would you like to enter a number?");
-    if (numberConfirm) {
-        var numberEntered = prompt("What number would you like to use?");
-
-        if (isNaN(parseInt(numberEntered))) {
-            alert("You did not give me a number!");
-        } else {
-            numberEntered = parseInt(numberEntered);
-
-            if (numberEntered % 2 === 1) {
-                alert("Your number is an odd number.");
-            } else if (numberEntered % 2 === 0) {
-                alert("Your number is an even number.");
-            }
-
-            alert("Adding 100 to your number makes it " + (numberEntered + 100));
-
-            if (numberEntered > 0) {
-                alert("You gave me a positive number");
-            } else if (numberEntered < 0) {
-                alert("You gave me a negative number");
+            if (isNaN(numberEntered)) {
+                alert("You did not give me a number!");
             } else {
-                alert("You gave me 0, which is neither a positive nor a negative number");
+                if (numberEntered % 2 === 1) {
+                    alert("Your number is an odd number.");
+                } else if (numberEntered % 2 === 0) {
+                    alert("Your number is an even number.");
+                }
+
+                alert("Adding 100 to your number makes it " + (100 + parseFloat(numberEntered)));
+
+                if (numberEntered > 0) {
+                    alert("You gave me a positive number");
+                } else if (numberEntered < 0) {
+                    alert("You gave me a negative number");
+                } else {
+                    alert("You gave me 0, which is neither a positive nor a negative number");
+                }
             }
         }
     }
+
+    number();
 
     /* ########################################################################## */
 
@@ -74,21 +75,21 @@
 
     function analyzeColor(color) {
         if (color === "red") {
-            console.log("apples are red");
+            return "apples are red";
         } else if (color === "orange") {
-            console.log("oranges are orange");
+            return "oranges are orange";
         } else if (color === "yellow") {
-            console.log("bananas are yellow");
+            return "bananas are yellow";
         } else if (color === "green") {
-            console.log("limes are green");
+            return "limes are green";
         } else if (color === "blue") {
-            console.log("blueberries are blue");
+            return "blueberries are blue";
         } else if (color === "indigo") {
-            console.log("indigo is a color");
+            return "indigo is a color";
         } else if (color === "violet") {
-            console.log("violet is a color as well");
+            return "violet is a color as well";
         } else {
-            console.log("...ya there is no way that " + color + " is a color");
+            return "...ya there is no way that " + color + " is a color";
         }
     }
 
@@ -99,38 +100,38 @@
      * You should see a different message everytime you refresh the page
      */
 
-    analyzeColor(randomColor);
+    console.log(analyzeColor(randomColor));
 
     /**
      * TODO:
      * Refactor your above function to use a switch-case statement
      */
 
-    var color;
-    switch (randomColor) {
+    var color = "";
+    switch (color) {
         case "red":
-            console.log("apples are red");
+            return "apples are red";
             break;
         case "orange":
-            console.log("oranges are orange");
+            return "oranges are orange";
             break;
         case "yellow":
-            console.log("bananas are yellow");
+            return "bananas are yellow";
             break;
         case "green":
-            console.log("limes are green");
+            return "limes are green";
             break;
         case "blue":
-            console.log("blueberries are blue");
+            return "blueberries are blue";
             break;
         case "indigo":
-            console.log("indigo is a color");
+            return "indigo is a color";
             break;
         case "violet":
-            console.log("violet is a color as well");
+            return "violet is a color as well";
             break;
         default:
-            console.log(color + " is not a color");
+            return color + " is not an option";
             break;
     }
 
@@ -141,7 +142,8 @@
      * function to show it to the user.
      */
 
-    analyzeColor(prompt("Name a color please. (all lowercase)"));
+    color = prompt("Name a color please. (all lowercase)");
+    alert(analyzeColor(color));
 
 
     /* ########################################################################## */
@@ -203,7 +205,7 @@
      * price before the discount was, and what their price after the discount is.
      */
 // Generate a random number between 0 and 6
-var luckyNumber = Math.floor(Math.random() * 6);
-calculateTotal(luckyNumber, prompt("What is your bill total?"));
+    var luckyNumber = Math.floor(Math.random() * 6);
+    calculateTotal(luckyNumber, prompt("What is your bill total?"));
 
 })();
