@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #map-canvas {
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <!--div to hold map-->
+    <div id="map-canvas"></div>
+
+
+    <script>
+        function initMap() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var mapOptions = {
+                zoom: 13,
+                center: {
+                    lat: 29.614232,
+                    lng: -98.735618
+                }
+            };
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+
+            // geocoding
+            var geo = new google.maps.Geocoder();
+
+            geo.geocode({adress: "1 UTSA Circle"}, function(response, status) {
+                console.log(response);
+                console.log(status);
+            })
+
+
+            // events
+            map
+                .addListener("dragend", function() {
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmb5NJC6r7WER_seNnO07yfo8ZErLg2ys&callback=initMap" async defer></script>
+
+</body>
+</html>
