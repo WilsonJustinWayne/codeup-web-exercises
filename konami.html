@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta content="http://www.thepetedesign.com/demos/flipout_cards_demo.html" property="og:url"/>
+<meta content="http://www.thepetedesign.com/images/flipout_cards_image.png" property="og:image"/>
+<meta name="author" content="Pete R.">
+<title>Konami Code</title>
+<link rel="image_src" href="/images/flipout_cards_image.png"/>
+<link rel="shortcut icon" id="favicon" href="favicon.png">
+<link rel="canonical" href="http://www.thepetedesign.com/demos/flipout_cards_demo.html"/>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic' rel='stylesheet'
+      type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<style>
+    .foc-main {
+        position: relative;
+        width: 260px;
+        height: 280px;
+        padding: 35px;
+        background: #fff;
+    }
+
+    .foc-card.foc-open {
+        opacity: 1;
+        -webkit-transform: rotateY(0);
+        -moz-transform: rotateY(0);
+        -ms-transform: rotateY(0);
+        -o-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+
+    body {
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+    }
+
+    .foc-wrapper {
+
+        display: block;
+        position: absolute;
+        width: 379px;
+        height: 350px;
+        -webkit-perspective: 640px;
+        -moz-perspective: 640px;
+        -ms-perspective: 640px;
+        -o-perspective: 640px;
+        perspective: 640px;
+
+    }
+
+    .foc-left-wrapper {
+        top: 0;
+        right: 100%;
+    }
+
+    .foc-right-wrapper {
+        top: 0;
+        left: 100%;
+    }
+
+    .foc-top-wrapper {
+        bottom: 100%;
+        left: 0px;
+        width: 100%;
+        height: 270px;
+
+    }
+
+    .foc-bottom-wrapper {
+        top: 100%;
+        left: 0px;
+        width: 100%;
+        height: 270px;
+
+    }
+
+    .foc-card {
+        background: #eee;
+        height: 350px;
+        position: relative;
+        width: 136px;
+        opacity: 0;
+        -webkit-transform-origin: 100% 50%;
+        -moz-transform-origin: 100% 50%;
+        -ms-transform-origin: 100% 50%;
+        -o-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+        -webkit-transition: all .15s ease-in-out;
+        -moz-transition: all .15s ease-in-out;
+        -ms-transition: all .15s ease-in-out;
+        -o-transition: all .15s ease-in-out;
+        transition: all .15s ease-in-out;
+    }
+
+    .foc-foldout.foc-left {
+        -webkit-transform: rotateX(0) translate3d(100%, 0, 0);
+        -moz-transform: rotateX(0) translate3d(100%, 0, 0);
+        -ms-transform: rotateX(0) translate3d(100%, 0, 0);
+        -o-transform: rotateX(0) translate3d(100%, 0, 0);
+        transform: rotateY(0) translate3d(100%, 0, 0);
+    }
+
+    .foc-foldout.foc-right {
+        -webkit-transform: rotateX(0) translate3d(-100%, 0, 0);
+        -moz-transform: rotateX(0) translate3d(-100%, 0, 0);
+        -ms-transform: rotateX(0) translate3d(-100%, 0, 0);
+        -o-transform: rotateX(0) translate3d(-100%, 0, 0);
+        transform: rotateY(0) translate3d(-100%, 0, 0);
+    }
+
+    .foc-foldout.foc-top {
+        -webkit-transform: rotateX(0) translate3d(0, 100%, 0);
+        -moz-transform: rotateX(0) translate3d(0, 100%, 0);
+        -ms-transform: rotateX(0) translate3d(0, 100%, 0);
+        -o-transform: rotateX(0) translate3d(0, 100%, 0);
+        transform: rotateY(0) translate3d(0, 100%, 0);
+    }
+
+    .foc-foldout.foc-bottom {
+        -webkit-transform: rotateX(0) translate3d(0, -100%, 0);
+        -moz-transform: rotateX(0) translate3d(0, -100%, 0);
+        -ms-transform: rotateX(0) translate3d(0, -100%, 0);
+        -o-transform: rotateX(0) translate3d(0, -100%, 0);
+        transform: rotateY(0) translate3d(0, -100%, 0);
+    }
+
+    .foc-foldout.foc-open {
+        -webkit-transform: rotateY(35deg) translate3d(0, 0, 0);
+        -moz-transform: rotateY(35deg) translate3d(0, 0, 0);
+        -ms-transform: rotateY(35deg) translate3d(0, 0, 0);
+        -o-transform: rotateY(35deg) translate3d(0, 0, 0);
+        transform: rotateY(35deg) translate3d(0, 0, 0);
+    }
+
+    .foc-foldout.foc-open:nth-child(even) {
+        -webkit-transform: rotateY(-35deg) translate3d(0, 0, 0);
+        -moz-transform: rotateY(-35deg) translate3d(0, 0, 0);
+        -ms-transform: rotateY(-35deg) translate3d(0, 0, 0);
+        -o-transform: rotateY(-35deg) translate3d(0, 0, 0);
+        transform: rotateY(-35deg) translate3d(0, 0, 0);
+        -webkit-transform-origin: 0% 50%;
+        -moz-transform-origin: 0% 50%;
+        -ms-transform-origin: 0% 50%;
+        -o-transform-origin: 0% 50%;
+        background: #ddd;
+    }
+
+    .foc-foldout.foc-right.foc-open {
+        -webkit-transform: rotateY(-35deg) translate3d(0, 0, 0);
+        -moz-transform: rotateY(-35deg) translate3d(0, 0, 0);
+        -ms-transform: rotateY(-35deg) translate3d(0, 0, 0);
+        -o-transform: rotateY(-35deg) translate3d(0, 0, 0);
+        transform: rotateY(-35deg) translate3d(0, 0, 0);
+    }
+
+    .foc-foldout.foc-right.foc-open:nth-child(even) {
+        -webkit-transform: rotateY(35deg) translate3d(0, 0, 0);
+        -moz-transform: rotateY(35deg) translate3d(0, 0, 0);
+        -ms-transform: rotateY(35deg) translate3d(0, 0, 0);
+        -o-transform: rotateY(35deg) translate3d(0, 0, 0);
+        transform: rotateY(35deg) translate3d(0, 0, 0);
+        -webkit-transform-origin: 100% 50%;
+        -moz-transform-origin: 100% 50%;
+        -ms-transform-origin: 100% 50%;
+        -o-transform-origin: 100% 50%;
+        background: #ddd;
+    }
+
+    .foc-foldout.foc-top.foc-open.even {
+        -webkit-transform: rotateX(-35deg) translate3d(0, 0, 0);
+        -moz-transform: rotateX(-35deg) translate3d(0, 0, 0);
+        -ms-transform: rotateX(-35deg) translate3d(0, 0, 0);
+        -o-transform: rotateX(-35deg) translate3d(0, 0, 0);
+        transform: rotateX(-35deg) translate3d(0, 0, 0);
+        -webkit-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+
+    }
+
+    .foc-foldout.foc-top.foc-open.odd {
+        -webkit-transform: rotateX(35deg) translate3d(0, 0, 0);
+        -moz-transform: rotateX(35deg) translate3d(0, 0, 0);
+        -ms-transform: rotateX(35deg) translate3d(0, 0, 0);
+        -o-transform: rotateX(35deg) translate3d(0, 0, 0);
+        transform: rotateX(35deg) translate3d(0, 0, 0);
+        -webkit-transform-origin: 50% 100%;
+        -moz-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+        -o-transform-origin: 50% 100%;
+        background: #ddd;
+    }
+
+    .foc-foldout.foc-bottom.foc-open {
+        -webkit-transform: rotateX(-35deg) translate3d(0, 0, 0);
+        -moz-transform: rotateX(-35deg) translate3d(0, 0, 0);
+        -ms-transform: rotateX(-35deg) translate3d(0, 0, 0);
+        -o-transform: rotateX(-35deg) translate3d(0, 0, 0);
+        transform: rotateX(-35deg) translate3d(0, 0, 0);
+        -webkit-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+
+    }
+
+    .foc-foldout.foc-bottom.foc-open:nth-child(even) {
+        -webkit-transform: rotateX(35deg) translate3d(0, 0, 0);
+        -moz-transform: rotateX(35deg) translate3d(0, 0, 0);
+        -ms-transform: rotateX(35deg) translate3d(0, 0, 0);
+        -o-transform: rotateX(35deg) translate3d(0, 0, 0);
+        transform: rotateX(35deg) translate3d(0, 0, 0);
+        -webkit-transform-origin: 50% 100%;
+        -moz-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+        -o-transform-origin: 50% 100%;
+        background: #ddd;
+    }
+
+    .foc-foldout.foc-left.foc-open {
+        left: 50px;
+    }
+
+    .foc-foldout.foc-left.foc-open:first-child {
+        left: 0;
+    }
+
+    .foc-foldout.foc-right.foc-open {
+        right: 50px;
+    }
+
+    .foc-foldout.foc-right.foc-open:first-child {
+        right: 0;
+    }
+
+    .foc-foldout.foc-top.foc-open {
+        top: 50px;
+    }
+
+    .foc-foldout.foc-top.foc-open:last-child {
+        top: 0;
+    }
+
+    .foc-foldout.foc-bottom.foc-open {
+        top: -50px;
+    }
+
+    .foc-foldout.foc-bottom.foc-open:first-child {
+        top: 0;
+    }
+
+    .foc-slideout.foc-left {
+        -webkit-transform: rotateY(0deg) translate3d(100%, 0, 0);
+        -moz-transform: rotateY(0deg) translate3d(100%, 0, 0);
+        -ms-transform: rotateY(0deg) translate3d(100%, 0, 0);
+        -o-transform: rotateY(0deg) translate3d(100%, 0, 0);
+        transform: rotateY(0deg) translate3d(100%, 0, 0);
+    }
+
+    .foc-slideout.foc-right {
+        -webkit-transform: rotateY(0deg) translate3d(-100%, 0, 0);
+        -moz-transform: rotateY(0deg) translate3d(-100%, 0, 0);
+        -ms-transform: rotateY(0deg) translate3d(-100%, 0, 0);
+        -o-transform: rotateY(0deg) translate3d(-100%, 0, 0);
+        transform: rotateY(0deg) translate3d(-100%, 0, 0);
+    }
+
+    .foc-slideout.foc-top {
+        -webkit-transform: rotateY(0deg) translate3d(0, 100%, 0);
+        -moz-transform: rotateY(0deg) translate3d(0, 100%, 0);
+        -ms-transform: rotateY(0deg) translate3d(0, 100%, 0);
+        -o-transform: rotateY(0deg) translate3d(0, 100%, 0);
+        transform: rotateY(0deg) translate3d(0, 100%, 0);
+    }
+
+    .foc-slideout.foc-bottom {
+        -webkit-transform: rotateY(0deg) translate3d(0, -100%, 0);
+        -moz-transform: rotateY(0deg) translate3d(0, -100%, 0);
+        -ms-transform: rotateY(0deg) translate3d(0, -100%, 0);
+        -o-transform: rotateY(0deg) translate3d(0, -100%, 0);
+        transform: rotateY(0deg) translate3d(0, -100%, 0);
+    }
+
+    .foc-slideout.foc-open {
+        -webkit-transform: rotateY(0deg) translate3d(0, 0, 0);
+        -moz-transform: rotateY(0deg) translate3d(0, 0, 0);
+        -ms-transform: rotateY(0deg) translate3d(0, 0, 0);
+        -o-transform: rotateY(0deg) translate3d(0, 0, 0);
+        transform: rotateY(0deg) translate3d(0, 0, 0);
+    }
+
+    .foc-left {
+        float: right;
+        -webkit-transform: rotateY(-90deg);
+        -moz-transform: rotateY(-90deg);
+        -ms-transform: rotateY(-90deg);
+        -o-transform: rotateY(-90deg);
+        transform: rotateY(-90deg);
+    }
+
+    .foc-right {
+        float: left;
+        -webkit-transform: rotateY(90deg);
+        -moz-transform: rotateY(90deg);
+        -ms-transform: rotateY(90deg);
+        -o-transform: rotateY(90deg);
+        transform: rotateY(90deg);
+        -webkit-transform-origin: 0% 50%;
+        -moz-transform-origin: 0% 50%;
+        -ms-transform-origin: 0% 50%;
+        -o-transform-origin: 0% 50%;
+        transform-origin: 0% 50%;
+    }
+
+    .foc-top {
+        float: left;
+        height: 136px;
+        width: 100%;
+        -webkit-transform: rotateX(90deg);
+        -moz-transform: rotateX(90deg);
+        -ms-transform: rotateX(90deg);
+        -o-transform: rotateX(90deg);
+        transform: rotateX(90deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+
+    .foc-bottom {
+        float: left;
+        height: 136px;
+        width: 100%;
+        -webkit-transform: rotateX(-90deg);
+        -moz-transform: rotateX(-90deg);
+        -ms-transform: rotateX(-90deg);
+        -o-transform: rotateX(-90deg);
+        transform: rotateX(-90deg);
+        -webkit-transform-origin: 100% 0%;
+        -moz-transform-origin: 100% 0%;
+        -ms-transform-origin: 100% 0%;
+        -o-transform-origin: 100% 0%;
+        transform-origin: 100% 0%;
+    }
+</style>
+<style>
+    html {
+        height: 100%;
+    }
+
+    body {
+        background: #F1f1f2;
+        padding: 0;
+        text-align: center;
+        font-family: 'open sans';
+        position: relative;
+        margin: 0;
+        height: 100%;
+    }
+
+    .wrapper {
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    h1, h2 {
+        width: 100%;
+        float: left;
+    }
+
+    h1 {
+        margin-top: 100px;
+        color: #999;
+        margin-bottom: 5px;
+        font-size: 70px;
+        font-weight: 100;
+    }
+
+    h2 {
+        padding: 00px 20px 30px 20px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        letter-spacing: 0px;
+        color: #888;
+        font-size: 20px;
+        line-height: 160%;
+        font-weight: 100;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    .pointer {
+        color: #00B0FF;
+        font-family: 'Pacifico';
+        font-size: 24px;
+        margin-top: 15px;
+        position: absolute;
+        top: 130px;
+        right: -40px;
+    }
+
+    .pointer2 {
+        color: #00B0FF;
+        font-family: 'Pacifico';
+        font-size: 24px;
+        margin-top: 15px;
+        position: absolute;
+        top: 130px;
+        left: -40px;
+    }
+
+    pre {
+        margin: 80px auto;
+    }
+
+    pre code {
+        padding: 35px;
+        border-radius: 5px;
+        font-size: 15px;
+        background: rgba(0, 0, 0, 0.1);
+        border: rgba(0, 0, 0, 0.05) 5px solid;
+        max-width: 500px;
+    }
+
+    .main {
+        float: left;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .main h1 {
+        padding: 20px 50px 10px;
+        float: left;
+        width: 100%;
+        font-size: 60px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        font-weight: 100;
+        margin: 0;
+        padding-top: 55px;
+        font-family: 'Open Sans';
+        letter-spacing: -1px;
+        text-transform: capitalize;
+    }
+
+    .main h1.demo1 {
+        background: #1ABC9C;
+    }
+
+    .reload.bell {
+        font-size: 12px;
+        padding: 20px;
+        width: 45px;
+        text-align: center;
+        height: 47px;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+    }
+
+    .reload.bell #notification {
+        font-size: 25px;
+        line-height: 140%;
+    }
+
+    .reload, .btn {
+        display: inline-block;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        display: inline-block;
+        line-height: 100%;
+        padding: 0.7em;
+        text-decoration: none;
+        width: 100px;
+        line-height: 140%;
+        font-size: 17px;
+        font-family: Open Sans;
+        font-weight: bold;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background-color: #4D90FE;
+        background-image: -webkit-linear-gradient(top, #4D90FE, #4787ED);
+        background-image: linear-gradient(top, #4d90fe, #4787ed);
+        border: 1px solid #3079ED;
+        color: #FFF;
+    }
+
+    .reload:hover {
+        background: #317af2;
+    }
+
+    .btn {
+        width: 200px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background-color: #4D90FE;
+        background-image: -webkit-linear-gradient(top, #4D90FE, #4787ED);
+        background-image: linear-gradient(top, #4d90fe, #4787ed);
+        border: 1px solid #3079ED;
+        color: #FFF;
+    }
+
+    .clear {
+        width: auto;
+    }
+
+    .btn:hover, .btn:hover {
+        background: #317af2;
+    }
+
+    .btns {
+        float: left;
+        width: 100%;
+        margin: 50px auto;
+    }
+
+    .credit {
+        text-align: center;
+        color: #888;
+        padding: 10px 10px;
+        margin: 0 0 0 0;
+        background: #f5f5f5;
+        float: left;
+        width: 100%;
+    }
+
+    .credit a {
+        text-decoration: none;
+        font-weight: bold;
+        color: black;
+    }
+
+    .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        display: block;
+        padding: 7px;
+        width: 100%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        background: #f5f5f5;
+        font-weight: bold;
+        font-size: 13px;
+        color: #888;
+        -webkit-transition: all 200ms ease-out;
+        -moz-transition: all 200ms ease-out;
+        -o-transition: all 200ms ease-out;
+        transition: all 200ms ease-out;
+    }
+
+    .back:hover {
+        background: #eee;
+    }
+
+    .page-container {
+        float: left;
+        width: 100%;
+        margin: 0 auto 300px;
+        position: relative;
+    }
+
+    .flipout {
+        text-align: center;
+    }
+
+    .foc-main {
+        display: inline-block;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .foc-card {
+        background: #f8f8f8;
+        border-left: 1px solid #eee;
+    }
+
+    .foc-main p {
+        margin: 0;
+        color: #77BEFF;
+        font-size: 100px;
+        line-height: 140%;
+        font-weight: 100;
+    }
+
+    .foc-card p {
+        color: #CCC;
+        margin-top: 75px;
+        margin-bottom: 50px;
+        font-size: 50px;
+        line-height: 140%;
+        font-weight: 100;
+    }
+
+    .foc-main .foc-card small {
+        font-size: 18px;
+    }
+
+    .foc-main small {
+        display: block;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #EEE;
+        color: #777;
+        font-size: 24px;
+        font-style: italic;
+        font-family: georgia;
+        line-height: 140%;
+        font-weight: 100;
+    }
+
+    .foc-main .foc-card.foc-bottom p {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .foc-main .foc-card.foc-bottom small {
+        border-top: 1px solid #ddd;
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $(document).ready(function () {
+            $(".flipout").flipout_cards();
+        });
+    });
+
+</script>
+</head>
+<body>
+<h1>SHAMELESS</h1>
+<h1>PLUG</h1>
+<h1>TIME!!!!</h1>
+<!--<div class="wrapper">-->
+    <!--<div class="main">-->
+        <!--<div class="header">-->
+            <!--<div class="btns">-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="page-container">-->
+            <!--<div class="flipout">-->
+                <!--<div class="foc-main">-->
+                    <!--<p>22&#176;C</p>-->
+                    <!--<small>It's Pretty Hot</small>-->
+                    <!--<small>Hover to see more</small>-->
+                <!--</div>-->
+                <!--<div class="foc-left">-->
+                    <!--<p>40&#176;C</p>-->
+                    <!--<small>Tomorrow is even worse.</small>-->
+                <!--</div>-->
+                <!--<div class="foc-left">-->
+                    <!--<p>46&#176;C</p>-->
+                    <!--<small>The next is even worse.</small>-->
+                <!--</div>-->
+                <!--<div class="foc-right">-->
+                    <!--<p>46&#176;C</p>-->
+                    <!--<small>The next is even worse.</small>-->
+                <!--</div>-->
+                <!--<div class="foc-right">-->
+                    <!--<p>50&#176;C</p>-->
+                    <!--<small>Don't go out.</small>-->
+                <!--</div>-->
+                <!--<div class="foc-bottom">-->
+                    <!--<p>50&#176;C</p>-->
+                    <!--<small>Don't go out.</small>-->
+                <!--</div>-->
+                <!--<div class="foc-bottom">-->
+                    <!--<p>50&#176;C</p>-->
+                    <!--<small>Don't go out.</small>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+</body>
+</html>
+<script src="js/jquery-2.2.4.js"></script>
+<!--<script>/* ===========================================================-->
+ <!--* jquery-flipout_cards.js v1.0-->
+ <!--* ===========================================================-->
+ <!--* Copyright 2014 Pete Rojwongsuriya.-->
+ <!--* http://www.thepetedesign.com-->
+ <!--*-->
+ <!--* Create a Multi Level Flip Out Cards with FlipOut_Cards.js-->
+ <!--*-->
+ <!--* License: Attribution-ShareAlike 4.0 International-->
+ <!--*-->
+ <!--* https://github.com/peachananr/flipout_cards-->
+ <!--*-->
+ <!--* ========================================================== */-->
+
+<!--!function ($) {-->
+
+    <!--var defaults = {-->
+        <!--animation: "flipOut",-->
+        <!--beforeOpen: null,-->
+        <!--afterOpen: null,-->
+        <!--beforeClose: null,-->
+        <!--afterClose: null-->
+    <!--};-->
+
+    <!--function oddOrEven(value) {-->
+        <!--if (value % 2 == 0)-->
+            <!--return "even";-->
+        <!--else-->
+            <!--return "odd";-->
+    <!--}-->
+
+    <!--function Timer(callback, delay) {-->
+        <!--var timerId, start, remaining = delay;-->
+
+        <!--this.pause = function () {-->
+            <!--window.clearTimeout(timerId);-->
+            <!--remaining -= new Date() - start;-->
+        <!--};-->
+
+        <!--this.resume = function () {-->
+            <!--start = new Date();-->
+            <!--timerId = window.setTimeout(callback, remaining);-->
+        <!--};-->
+
+        <!--this.resume();-->
+    <!--}-->
+
+    <!--$.fn.getDimension = function (d) {-->
+        <!--$clone = this.clone().addClass("foc-card foc-open").css("visibility", "hidden").appendTo($('body'));-->
+        <!--if (d == "width") {-->
+            <!--var $width = $clone.outerWidth();-->
+            <!--$clone.remove();-->
+            <!--return $width;-->
+        <!--} else {-->
+            <!--var $height = $clone.outerHeight();-->
+            <!--$clone.remove();-->
+            <!--return $height;-->
+        <!--}-->
+
+    <!--};-->
+
+    <!--$.fn.flipout_cards = function (options) {-->
+        <!--var settings = $.extend({}, defaults, options),-->
+            <!--el = $(this);-->
+
+
+        <!--return this.each(function () {-->
+
+            <!--var left = "",-->
+                <!--right = "",-->
+                <!--top = "",-->
+                <!--bottom = "",-->
+                <!--animation = false,-->
+                <!--width = 0,-->
+                <!--height = 0,-->
+                <!--extraclass = "";-->
+
+            <!--switch (settings.animation) {-->
+                <!--case 'slideOut':-->
+                    <!--extraclass = "foc-slideout";-->
+                    <!--break;-->
+                <!--case 'foldOut':-->
+                    <!--extraclass = "foc-foldout";-->
+                    <!--break;-->
+                <!--default:-->
+            <!--}-->
+
+
+            <!--el.find(".foc-left").each(function (index) {-->
+                <!--var el2 = $(this);-->
+                <!--width += el2.getDimension("width");-->
+                <!--var new_el = el2.clone();-->
+                <!--el2.remove();-->
+                <!--left += "<div class='foc-card foc-left " + extraclass + "'>" + new_el.html() + "</div>";-->
+            <!--});-->
+
+            <!--if (left != "") $("<div style='width:" + width + "px;' class='foc-left-wrapper foc-wrapper'>" + left + "</div>").appendTo(".foc-main");-->
+            <!--width = 0;-->
+
+            <!--el.find(".foc-right").each(function (index) {-->
+                <!--var el2 = $(this);-->
+                <!--width += el2.getDimension("width");-->
+                <!--var new_el = el2.clone();-->
+                <!--el2.remove();-->
+                <!--right += "<div class='foc-card foc-right " + extraclass + "'>" + new_el.html() + "</div>";-->
+            <!--});-->
+
+            <!--if (right != "") $("<div style='width:" + width + "px;' class='foc-right-wrapper foc-wrapper'>" + right + "</div>").appendTo(".foc-main");-->
+
+            <!--$(el.find(".foc-top").get().reverse()).each(function (index) {-->
+                <!--var el2 = $(this);-->
+                <!--height += el2.getDimension("height");-->
+                <!--var new_el = el2.clone();-->
+                <!--el2.remove();-->
+                <!--top = "<div class='foc-card foc-top " + extraclass + " " + oddOrEven(index + 1) + "'>" + new_el.html() + "</div>" + top;-->
+            <!--});-->
+
+            <!--if (top != "") $("<div style='height:" + height + "px;' class='foc-top-wrapper foc-wrapper'>" + top + "</div>").appendTo(".foc-main");-->
+
+            <!--height = 0;-->
+
+            <!--el.find(".foc-bottom").each(function (index) {-->
+                <!--var el2 = $(this);-->
+                <!--height += el2.getDimension("height");-->
+                <!--var new_el = el2.clone();-->
+                <!--el2.remove();-->
+                <!--bottom += "<div class='foc-card foc-bottom " + extraclass + "'>" + new_el.html() + "</div>";-->
+            <!--});-->
+
+            <!--if (bottom != "") $("<div style='height:" + height + "px;' class='foc-bottom-wrapper foc-wrapper'>" + bottom + "</div>").appendTo(".foc-main");-->
+
+            <!--function thing() {-->
+                <!--if (typeof settings.beforeOpen == 'function') settings.beforeOpen();-->
+                <!--$(this).addClass("foc-open");-->
+                <!--el.find(".foc-wrapper").each(function () {-->
+                    <!--var el4 = $(this);-->
+                    <!--if (el4.hasClass("foc-top-wrapper")) {-->
+                        <!--var cards = $(el4.find(".foc-card").get().reverse())-->
+                    <!--} else {-->
+                        <!--var cards = el4.find(".foc-card")-->
+                    <!--}-->
+                    <!--if (animation == false) {-->
+                        <!--var donecheck = false;-->
+                        <!--cards.each(function (i) {-->
+                            <!--var el3 = $(this);-->
+                            <!--animation = true;-->
+                            <!--var timeout_open = new Timer(function () {-->
+                                <!--if (el.hasClass("foc-open")) el3.addClass("foc-open")-->
+                            <!--}, i * 100);-->
+                            <!--if (i == el4.find(".foc-card").length - 1) {-->
+                                <!--animation = false;-->
+                                <!--el3.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function (e) {-->
+                                    <!--if (typeof settings.afterOpen == 'function' && donecheck == false) settings.afterOpen();-->
+                                    <!--donecheck = true;-->
+                                <!--});-->
+
+                            <!--}-->
+                        <!--});-->
+                    <!--}-->
+                <!--});-->
+            <!--}-->
+            <!--// , function () {-->
+            <!--//     if (typeof settings.beforeClose == 'function') settings.beforeClose();-->
+            <!--//     $(this).removeClass("foc-open");-->
+            <!--//     el.find(".foc-wrapper").each(function () {-->
+            <!--//         var el4 = $(this);-->
+            <!--//         if (animation == false) {-->
+            <!--//             if (el4.hasClass("foc-top-wrapper")) {-->
+            <!--//                 var cards = el4.find(".foc-card")-->
+            <!--//             } else {-->
+            <!--//                 var cards = $(el4.find(".foc-card").get().reverse())-->
+            <!--//             }-->
+            <!--//             var donecheck = false;-->
+            <!--//             cards.each(function (j) {-->
+            <!--//                 var el3 = $(this);-->
+            <!--//                 animation = true;-->
+            <!--//                 var timeout_close = new Timer(function () {-->
+            <!--//                     if (!el.hasClass("foc-open")) el3.removeClass("foc-open")-->
+            <!--//                 }, j * 100);-->
+            <!--//                 if (j == el4.find(".foc-card").length - 1) {-->
+            <!--//                     animation = false;-->
+            <!--//                     el3.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function (e) {-->
+            <!--//                         if (typeof settings.afterClose == 'function' && donecheck == false) {-->
+            <!--//                             settings.afterClose();-->
+            <!--//                             donecheck = true;-->
+            <!--//                         }-->
+            <!--//                     });-->
+            <!--//                 }-->
+            <!--//             });-->
+            <!--//         }-->
+            <!--//     });-->
+            <!--// });-->
+
+        <!--});-->
+
+
+    <!--}-->
+<!--}(window.jQuery);-->
+<!--</script>-->
+<script>
+    "use strict";
+
+
+    function onKonamiCode(cb) {
+        var input = '';
+        var key = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightbaEnter';
+        $(document).keyup(function (event) {
+            input += ("" + event.key);
+            console.log(event.key);
+            console.log(input);
+            if (input === key) {
+                return cb();
+            }
+            if (!key.indexOf(input)) return;
+            input = ("" + event.key);
+        });
+    }
+
+    function konamiAction() {
+        window.location = "https://www.youtube.com/user/BracketStudio"
+    }
+
+    onKonamiCode(konamiAction);
+</script>
+</body>
+</html>

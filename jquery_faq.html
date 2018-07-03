@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jquery-2.2.4.js"></script>
+    <title>Document</title>
+    <style>
+        img {
+            height: 300px;
+            width: auto;
+        }
+
+        .invisible {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>"Would you like to sign up for our newsletter?" <span>x</span></h1>
+</div>
+<dl>
+    <h1>FAQS ABOUT PARKS</h1><h2>Register for the site yo!</h2>
+
+    <button class="make-invis"> Toggle invisibility</button>
+
+    <dt>1). Who parks</dt>
+    <dd class="invisible clickable"><img src="Images/whoParks.jpg"></dd>
+    <dt>2). What parks</dt>
+    <dd class="invisible clickable"><img src="Images/whatParks.jpg"></dd>
+    <dt>3). When parks</dt>
+    <dd class="invisible clickable"><img src="Images/whenParks.jpeg">
+        <h3>parks and rec 8:30pm - 10:00pm CST</h3></dd>
+    <dt>4). Where parks</dt>
+    <dd class="invisible clickable"><img src="Images/whereParks.jpg"></dd>
+    <dt>5). Why parks</dt>
+    <dd class="invisible clickable"><h1>BECAUSE</h1></dd>
+    <dt>6). How parks</dt>
+    <dd class="invisible clickable"><img src="Images/howParks.jpg"></dd>
+    <dt>7). When to park</dt>
+    <dd class="invisible clickable"><img src="Images/whenToPark.jpeg"></dd>
+    <dt>8). When not to park</dt>
+    <dd class="invisible clickable"><img src="Images/whenNotToPark.jpg"></dd>
+    <dt>9). How to park</dt>
+    <dd class="invisible clickable"><img src="Images/howToPark.jpg"></dd>
+    <dt>10). How not to park</dt>
+    <dd class="invisible clickable"><img src="Images/howNotToPark.jpeg"><img src="Images/howNotToPark1.jpg"><img
+            src="Images/howNotToPark2.jpeg"><img src="Images/howNotToPark3.jpeg"></dd>
+</dl>
+
+<button class="yellow-toggle">Toggle Last Line Yellow</button>
+<h3 class="bold-toggle">[parkname1]</h3>
+<ul>
+    <li>[parkfact1]</li>
+    <li>[parkfact2]</li>
+    <li>[parkfact3]</li>
+    <li>[parkfact4]</li>
+</ul>
+<h3 class="bold-toggle">[parkname2]</h3>
+<ul>
+    <li>[parkfact1]</li>
+    <li>[parkfact2]</li>
+    <li>[parkfact3]</li>
+    <li>[parkfact4]</li>
+</ul>
+<h3 class="bold-toggle">[parkname3]</h3>
+<ul>
+    <li>[parkfact1]</li>
+    <li>[parkfact2]</li>
+    <li>[parkfact3]</li>
+    <li>[parkfact4]</li>
+</ul>
+<script>
+    (function () {
+        "use strict";
+        $('.make-invis').click(function () {
+            $('dd').toggleClass('invisible');
+        });
+
+        $('.yellow-toggle').click(function () {
+            $('ul').each(function (index, element) {
+                $(element).children().children().last().css('background', 'yellow');
+                console.log("yup");
+                console.log(jQuery);
+            });
+        });
+
+        $('.bold-toggle').click(function () {
+            $(this).next().children().css('font-weight', 'bold');
+        });
+
+        $('li').click(function () {
+            $(this).parent().children().first().css('font', 'blue');
+        });
+
+        // At the top of the page, add a div with two elements, an h1 that reads
+        // "Would you like to sign up for our newsletter?" and a span that has an 'x' in it.
+        // When the 'x' is clicked, hide the entire div element.
+        $('span').click(function () {
+            $(this).parent().parent().hide();
+        });
+
+        // The uls next to each h3 that contain facts about each park should start out hidden,
+        // and when the corresponding h3 is clicked, the display of the ul should be toggled with a sliding effect.
+        $('ul').hide();
+        $('h3').click(function () {
+            $(this).next().slideToggle();
+        })
+
+        // After the user has been on the page for 8 seconds, an h2 should fade in that asks the user to register for the site.
+        $('h2').hide();
+        setTimeout(function () {
+            $('h2').fadeIn();
+        }, 8000);
+    })();
+</script>
+</body>
+</html>
