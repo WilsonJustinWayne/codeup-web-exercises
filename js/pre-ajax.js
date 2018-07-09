@@ -55,7 +55,7 @@
             });
             html += "</ul>";
             return html;
-        };
+        }
 
         $('#add-names-btn').click(function () {
             var html = buildList();
