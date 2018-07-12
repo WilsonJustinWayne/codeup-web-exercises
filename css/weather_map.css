@@ -1,0 +1,14 @@
+body {
+    background-color: #7CB06C;
+}
+
+.card-body {
+    background-color: #cbffcd;
+    border: .01em solid black;
+}
+
+#map {
+    border-radius: 2%;
+    height: 20em;
+    width: 100%;
+}

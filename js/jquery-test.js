@@ -9,7 +9,7 @@ $(function () {
         $(this).css('font-size', '18px');
     });
 
-    $('li').hover(function () {
+    $('h1, p').hover(function () {
         $(this).css('color', 'red');
     }, function () {
         $(this).css('color', 'black');

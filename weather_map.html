@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Map Api Project</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" type="text/css" href="css/weather_map.css">
+    <script src="js/jquery-2.2.4.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-3 pt-1">
+            <form id="search">
+                <div class="input-group">
+                    <input id="searchBox" type="text" class="form-control p-1 text-center"
+                           placeholder="City Name, Country OR Zipcode"
+                           aria-label="Search Box">
+                </div>
+                <div class="input-group pt-2">
+                    <button id="searchButton" class="btn btn-info btn-block" type="button">Button</button>
+                </div>
+            </form>
+        </div>
+        <div id="city" class="col-6"></div>
+        <div class="col-3 pt-4">
+            <div class="btn-group" role="group" aria-label="Degree Changer">
+                <button id="imperial" type="button" class="btn btn-info">Imperial</button>
+                <button id="metric" type="button" class="btn btn-info">Metric</button>
+                <button id="kelvin" type="button" class="btn btn-info">Kelvin</button>
+            </div>
+        </div>
+    </div>
+    <div id="weather-info-container" class="row mb-2">
+        <div class="col-4 card-body">
+            <div class="row">
+                <div class="col-12 text-center">
+                    high/low
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    icon
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    weather
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    humidity
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    wind
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    pressure
+                </div>
+            </div>
+        </div>
+        <div class="col-4 card-body">
+            <div class="row">
+                <div class="col-12 text-center">
+                    high/low
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    icon
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    weather
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    humidity
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    wind
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    pressure
+                </div>
+            </div>
+        </div>
+        <div class="col-4 card-body">
+            <div class="row">
+                <div class="col-12 text-center">
+                    high/low
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    icon
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    weather
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    humidity
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    wind
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    pressure
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="map-container" class="row my-3">
+        <div id="map"></div>
+    </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmb5NJC6r7WER_seNnO07yfo8ZErLg2ys"></script>
+<script src="js/weather_map.js"></script>
+</body>
+</html>
