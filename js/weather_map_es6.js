@@ -1,16 +1,16 @@
-(function () {
+(() => {
     "use strict";
 
     // My House - lat, long
-    var latitude = 29.61395;
-    var longitude = -98.73576;
-    var tempUnit = "Imperial";
-    var windSpeedUnit = "mph";
-    var today, tomorrow, nextDay;
+    let latitude = 29.61395;
+    let longitude = -98.73576;
+    let tempUnit = "Imperial";
+    let windSpeedUnit = "mph";
+    let today, tomorrow, nextDay;
 
     function getWeatherDataByCoordinates() {
         // Getting Weather Info
-        var mapData = $.get("https://api.openweathermap.org/data/2.5/forecast", {
+        const mapData = $.get("https://api.openweathermap.org/data/2.5/forecast", {
             APPID: "1b9231e745acc0ca8d3ca09edb231549",
             lat: latitude,
             lon: longitude,
@@ -21,7 +21,7 @@
 
     function getWeatherDataByName(searchedName) {
         // Getting Weather Info
-        var mapData = $.get("https://api.openweathermap.org/data/2.5/forecast", {
+        const mapData = $.get("https://api.openweathermap.org/data/2.5/forecast", {
             APPID: "1b9231e745acc0ca8d3ca09edb231549",
             q: searchedName,
             units: tempUnit
@@ -31,18 +31,18 @@
 
     // When Weather is done loading: assigns Temperature and Wind Speed units,
     function createHtml(mapData) {
-        mapData.done(function (data) {
+        mapData.done(data => {
             console.log(data);
-            var html = "";
-            var deg = "";
-            var weekDay = "";
+            let html = "";
+            let deg = "";
+            let weekDay = "";
             switch (tempUnit) {
                 case "Imperial":
-                    deg = '&deg' + 'F';
+                    deg = '&degF';
                     windSpeedUnit = 'mph';
                     break;
                 case "Metric":
-                    deg = '&deg' + 'C';
+                    deg = '&degC';
                     windSpeedUnit = 'm/s';
                     break;
                 default:
@@ -50,7 +50,7 @@
                     windSpeedUnit = 'm/s';
                     break;
             }
-            var cityName;
+            let cityName;
             if (data.city.name === undefined) {
                 cityName = "No City Name";
             } else {
@@ -59,9 +59,10 @@
             if (latitude === 29.61395 && longitude === -98.73576) {
                 cityName = "My House";
             }
-            $('#city').html('<div class="row"><div class="col-12"><h1 class="text-center m-0">Weather Application</h1></div></div><div class="row"><div class="col-12"><h3 class="text-center">' + cityName + ' - ' + '(' + latitude + ', ' + longitude + ')' + '</h3></div></div>');
-            data.list.forEach(function (day, index) {
+            $('#city').html(`<div class="row"><div class="col-12"><h1 class="text-center m-0">Weather Application</h1></div></div><div class="row"><div class="col-12"><h3 class="text-center">${cityName} - (${latitude}, ${longitude})</h3></div></div>`);
+            data.list.forEach((day, index) => {
                 // Setting the day of the week
+                const iconUrl = `http://openweathermap.org/img/w/${day.weather[0].icon}.png`;
                 switch (index) {
                     case 0:
                     case 1:
@@ -101,29 +102,7 @@
                     case 0:
                     case 8:
                     case 16:
-                        html += '<div class="col-4 card-body pt-1 pb-0">' +
-                            '<div class="row">' +
-                            '<div class="col-12 text-center">' +
-                            '<h3>' + Math.round(day.main.temp_max) + deg + '/' + Math.round(day.main.temp_min) + deg +
-                            '</h3></div></div>' +
-                            '<div class="row">' +
-                            '<div class="col-12 text-center"><p class="m-0"><strong>' + weekDay +
-                            '</strong><img src="http://openweathermap.org/img/w/' + day.weather[0].icon + '.png">' +
-                            '</p></div></div>' +
-                            '<div class="row">' +
-                            '<div class="col-12 text-center">' +
-                            '<p><strong>' + day.weather[0].main + ': </strong>' + day.weather[0].description +
-                            '</p></div></div>' +
-                            '<div class="row">' +
-                            '<div class="col-12 text-center">' +
-                            '<p><strong>Humidity: </strong>' + day.main.humidity +
-                            '</p></div></div>' +
-                            '<div class="row">' +
-                            '<div class="col-12 text-center"><p><strong>Wind Speed: </strong>' + day.wind.speed + ' ' + windSpeedUnit +
-                            '</p></div></div>' +
-                            '<div class="row">' +
-                            '<div class="col-12 text-center"><p><strong>Pressure: </strong>' + day.main.pressure + ' mb' +
-                            '</p></div></div></div>';
+                        html += `<div class="col-4 card-body pt-1 pb-0"><div class="row"><div class="col-12 text-center"><h3>${Math.round(day.main.temp_max)}${deg}/${Math.round(day.main.temp_min)}${deg}</h3></div></div><div class="row"><div class="col-12 text-center"><p class="m-0"><strong>${weekDay}</strong><img src=${iconUrl}></p></div></div><div class="row"><div class="col-12 text-center"><p><strong>${day.weather[0].main}: </strong>${day.weather[0].description}</p></div></div><div class="row"><div class="col-12 text-center"><p><strong>Humidity: </strong>${day.main.humidity}</p></div></div><div class="row"><div class="col-12 text-center"><p><strong>Wind Speed: </strong>${day.wind.speed} ${windSpeedUnit}</p></div></div><div class="row"><div class="col-12 text-center"><p><strong>Pressure: </strong>${day.main.pressure} mb</p></div></div></div>`;
                         return html;
                     default:
                         break;
@@ -136,17 +115,26 @@
 
     function initMap() {
 
-        var location = {lat: latitude, lng: longitude};
-        var mapOptions = {zoom: 20, center: location, mapTypeId: 'satellite'};
+        const location = {lat: latitude, lng: longitude};
+        const mapOptions = {zoom: 20, center: location, mapTypeId: 'satellite'};
 
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        const map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-        var marker = new google.maps.Marker({position: location, map: map, draggable: true});
-        var markerArray = [];
+        const contentString = `<a href="https://www.youtube.com/user/BracketStudio"><img id="logo" src="Images/LOGO%20BRAND2.png" class="logo"></a>`;
+        const infowindow = new google.maps.InfoWindow({content: contentString});
+        infowindow.addListener('click', function () {
+            window.location = "https://www.youtube.com/user/BracketStudio";
+        });
+
+        const marker = new google.maps.Marker({position: location, map: map, draggable: true});
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+        let markerArray = [];
         markerArray.push(marker);
 
         function dragEnd(marker) {
-            google.maps.event.addListener(marker, "dragend", function (event) {
+            google.maps.event.addListener(marker, "dragend", () => {
                 latitude = marker.getPosition().lat().toFixed(5);
                 longitude = marker.getPosition().lng().toFixed(5);
                 getWeatherDataByCoordinates();
@@ -155,25 +143,25 @@
 
         dragEnd(marker);
 
-        $('#search').on('submit', function (e) {
+        $('#search').on('submit', e => {
             e.preventDefault();
             search();
         });
-        $('#searchButton').click(function () {
+        $('#searchButton').click(() => {
             search();
         });
 
         function search() {
-            var searchedName = $('#searchBox').val();
-            var geocoder = new google.maps.Geocoder();
+            let searchedName = $('#searchBox').val();
+            const geocoder = new google.maps.Geocoder();
             if (searchedName !== "") {
-                geocoder.geocode({'address': searchedName}, function (results, status) {
+                geocoder.geocode({'address': searchedName}, (results, status) => {
                     if (status === 'OK') {
                         map.setCenter(results[0].geometry.location);
                         latitude = results[0].geometry.location.lat().toFixed(5);
                         console.log(results[0].geometry.location.lat().toFixed(5));
                         longitude = results[0].geometry.location.lng().toFixed(5);
-                        var marker = new google.maps.Marker({
+                        const marker = new google.maps.Marker({
                             map: map,
                             position: results[0].geometry.location,
                             animation: google.maps.Animation.DROP,
@@ -185,7 +173,7 @@
                         dragEnd(marker);
                         getWeatherDataByName(searchedName);
                     } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
+                        alert(`Geocode was not successful for the following reason: ${status}`);
                     }
                 });
             }
@@ -193,25 +181,28 @@
     }
 
     // Button Functionality
-    $('#imperial').click(function () {
+    $('#imperial').click(() => {
         tempUnit = "Imperial";
         getWeatherDataByCoordinates();
     });
-    $('#metric').click(function () {
+    $('#metric').click(() => {
         tempUnit = "Metric";
         getWeatherDataByCoordinates();
     });
 
-    $('#kelvin').click(function () {
+    $('#kelvin').click(() => {
         tempUnit = "Kelvin";
         getWeatherDataByCoordinates();
     });
 
+    $('#logo').click(function () {
+        console.log("hello");
+    });
+
     // Source Site: Graham The Mann
     function dayOfWeek() {
-        var d = new Date();
-        var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
+        const d = new Date();
+        const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday"];
         today = weekday[d.getDay()];
         tomorrow = weekday[d.getDay() + 1];
         nextDay = weekday[d.getDay() + 2];

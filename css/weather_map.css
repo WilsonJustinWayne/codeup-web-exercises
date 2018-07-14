@@ -12,3 +12,9 @@ body {
     height: 20em;
     width: 100%;
 }
+
+.logo {
+    height: 90px;
+    width: 90px;
+    float: left;
+}
