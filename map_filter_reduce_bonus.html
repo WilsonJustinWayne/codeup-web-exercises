@@ -129,13 +129,16 @@
 
          */
 
-        function makeSuperPet(array) {
-            var obj = array.reduce((acc, cur, i) =>{
-                acc[i] = cur;
-            }, {});
-            console.table(obj);
-            // console.log(endArray);
-        }
+        const makeSuperPet = (arr) => {
+            return arr.reduce((accum, curr) => {
+                accum.name += curr.name;
+                accum.age += curr.age;
+                accum.breed += curr.breed[0];
+                return accum;
+            }, {name: '', age: 0, breed: ''});
+        };
+        console.log(makeSuperPet(pets));
+
 
         makeSuperPet(pets);
 
