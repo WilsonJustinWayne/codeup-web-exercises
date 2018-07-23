@@ -22,7 +22,7 @@
             return new Promise((resolve) => {
                 if (username !== "") {
                     resolve(
-                        fetch(url, {headers: {'Authorization': 'token 91de8b3d1da21b0a7f283dd9bb2a2a6214a422e5'}})
+                        fetch(url, {headers: {'Authorization': 'token INSERT TOKEN HERE'}})
                             .then(response => response.json())
                             .then(events => events.forEach(event => {
                                     if (event.type === thing) {
